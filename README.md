@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Solra
 
-## Getting Started
+**"You've always known. Let's find it together."**
 
-First, run the development server:
+Solra adalah platform self-discovery berbasis AI yang menggunakan percakapan mendalam — bukan tes pilihan ganda — untuk membantu pengguna memahami diri mereka sendiri.
 
+## Fitur
+
+- **Self-Discovery Mode**: Percakapan mendalam yang menghasilkan profil personal yang bisa di-download sebagai PNG
+- **Safe Space Mode**: Teman curhat AI yang empatik dan non-judgmental, dengan disclaimer otomatis
+- **Knowledge Page**: Artikel tentang mengenal diri, Ikigai, Values Clarification, dll
+- **Profile Card**: Hasil sesi self-discovery bisa disave sebagai gambar dan dibagikan
+
+## Tech Stack
+
+- Next.js 15 (App Router)
+- TypeScript
+- Tailwind CSS
+- Google Gemini AI (gemini-1.5-flash)
+- html2canvas (untuk export PNG)
+- Deployed ke Vercel
+
+## Setup Lokal
+
+### 1. Install dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Konfigurasi API Key
+Edit file `.env.local`:
+```
+GEMINI_API_KEY=your_api_key_here
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Dapatkan API key gratis di: https://aistudio.google.com
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Jalankan development server
+```bash
+npm run dev
+```
 
-## Learn More
+Buka http://localhost:3000
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy ke Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Push ke GitHub
+2. Import project di vercel.com
+3. Tambahkan environment variable: `GEMINI_API_KEY`
+4. Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Struktur Project
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+solra/
+├── app/
+│   ├── page.tsx          # Landing page
+│   ├── chat/
+│   │   └── page.tsx      # Chat interface (Self-Discovery & Safe Space)
+│   ├── knowledge/
+│   │   └── page.tsx      # Knowledge articles
+│   ├── components/
+│   │   └── ProfileCard.tsx  # Profile card + PNG export
+│   └── api/
+│       └── chat/
+│           └── route.ts  # Gemini API handler
+└── .env.local            # API keys (jangan di-commit)
+```
