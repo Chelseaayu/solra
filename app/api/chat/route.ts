@@ -96,7 +96,7 @@ export async function POST(req: NextRequest) {
     ];
 
     const completion = await groq.chat.completions.create({
-      model: "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",
+      model: "openai/gpt-oss-120b",
       messages: groqMessages,
       max_tokens: 1024,
       temperature: 0.85,
